@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
+
+  <title>Portfolio Web</title>
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ml-auto">
+
+      <div class="container-fluid">
+        <img class="ap-logo" src="./img/arg-programa-logo-white.png" alt="Argentina Programa Logo">
+        <a class="navbar-brand">#YoProgramo</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+          aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end " id="navbarToggler">
+
+          <ul class="navbar-nav list-unstyled flex-row justify-content-evenly m-2">
+            <li><a href="#" class="nav-link"><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li><a href="#" class="nav-link"><i class="fa-brands fa-instagram"></i></a>
+            </li>
+            <li><a href="#" class="nav-link"><i class="fa-brands fa-twitter"></i></a>
+            </li>
+            <li><button class="btn btn-outline-success" id="btn-login" type="button" onclick="login()">
+                Cerrar sesión</button>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <div class="container-fluid">
+
+    <div class="card" id="profile">
+
+      <div class="banner">
+        <img class="card-img-top" src="./img/cover.jpg" alt="p">
+      </div>
+
+      <div class="card-body">
+        <img class="profile-pic" src="./img/profile.jpg" alt="...">
+        <div class="input-img-profile new-content-box">
+
+          <label class="btn btn-secondary mb-4" for="input-img-profile">Seleccione una imagen:</label>
+          <input class="hidden-input" type="file" id="input-img-profile" name="input-img-profile"
+            accept="image/jpeg, image/png, image/jpg" onchange="previewIMG(this, '#profile .profile-pic')">
+
+        </div>
+
+        <div class="profile-edit-btns text-end">
+
+          <button class="btn btn-primary my-3 mt-md-0" id="add-section-btn" data-bs-toggle="modal"
+            data-bs-target="#modal" type="button">Añadir Sección</button>
+
+          <div class="btn-edit" onclick="editProfile(
+            '#profile .input-img-profile',
+            '#profile .input-title',
+            '#profile .input-text',
+            '#profile .input-location',
+            '#profile .textarea-description',
+            '#profile .submit-button',
+            '#profile h2',
+            '#profile .profession-text',
+            '#profile .location-text',
+            '#profile .about'
+            )">
+            <a class="btn-right"><i class="fa-solid fa-pen"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-body d-md-flex">
+        <div class="flex-shrink-0 mb-3">
+          <div class="card-title">
+            <h2>Damián Zappitelli</h2>
+          </div>
+
+          <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+          <p class="card-text profession-text mt-3 mb-1">Full Stack Developer Jr</p>
+          <input class="input-text new-content-box" type="text" placeholder="Ingrese el nuevo texto.">
+          <p class="location-text card-text mt-3 mb-1">La Plata, Buenos Aires (Argentina)</p>
+          <input class="input-location new-content-box mb-3" type="text" placeholder="Ingrese la nueva localidad.">
+        </div>
+
+        <div class="flex-grow-1 m-1 ms-md-5">
+
+          <p class="about card-text">Desde que puedo recordar me ha interesado el arte, las computadoras y las
+            historias. Como developer puedo combinar todos esos intereses. Muy entusiasmado de poder trabajar en la
+            industria IT.</p>
+
+          <textarea class="new-content-box container-fluid textarea-description" type="text"
+            placeholder="Ingrese el nuevo texto."></textarea>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#profile .new-content-box')">
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+
+        <form class="mb-3" id="modal-form" onsubmit="createSection(); return false">
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-label">Añadir Sección</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+              <div class="mb-3">
+                <label for="modal-input-title" class="form-label">Titulo</label>
+                <input type="text" class="form-control titulo" id="modal-input-title" placeholder="Ingrese el titulo."
+                  required>
+              </div>
+
+              <div class="texto mb-3" id="modal-nodisplay">
+                <label for="modal-textarea" class="form-label">Texto</label>
+                <textarea class="form-control textarea" id="modal-textarea" placeholder="Ingrese el texto."></textarea>
+                <div class="invalid-feedback">
+                  El texto es obligatorio.
+                </div>
+              </div>
+
+              <div class="selector mb-3">
+                <label for="modal-selector" class="form-label">Seleccione el tipo de sección:</label>
+                <select class="form-select" id="modal-selector" aria-label="select" onchange="displayOnSimple(this)">
+                  <option value="0" selected>Click aquí para seleccionar un tipo de sección</option>
+                  <option value="1">Sección Experiencia/Educación</option>
+                  <option value="2">Sección Habilidades</option>
+                  <option value="3">Sección Proyecto</option>
+                  <option value="4">Sección Simple</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Añadir sección</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+    <div class="card" id="exp">
+      <div class="card-body">
+        <div class="card-title">
+
+          <div class="section-title d-flex">
+            <div class="d-block">
+
+              <div class="d-flex">
+                <h2>Experiencia Laboral</h2>
+                <div class="btn-edit ms-3">
+                  <a class="btn-right p-1" onclick="editSectionTitle(
+                    '#exp .section-title .input-title',
+                    '#exp .section-title h2',
+                    '#exp .section-title .submit-button'
+                    )">
+                    <i class="fa-solid fa-pen"></i></a>
+                  <a class="btn-right p-1" onclick="deleteElement('#exp')">
+                    <i class="fa-solid fa-x"></i></a>
+                </div>
+              </div>
+
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo título.">
+              <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+                onclick="hideBoxes('#exp .section-title .new-content-box')">
+
+            </div>
+          </div>
+
+          <div class="btn-edit">
+            <a class="btn-right" onclick="addInstitution('#exp .card-title')">
+              <i class="fa-solid fa-plus"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="institution-1 d-lg-flex my-3">
+
+          <div class="flex-shrink-0 text-center ms-md-3">
+            <img class="logo-institution mb-3" src="./img/d-logo.png" alt="Logo">
+
+            <div class="input-file new-content-box" id="exp-input-file-1">
+              <label class="btn btn-secondary mb-4" for="exp-img-input-1">Seleccione una imagen:</label>
+              <input class="hidden-input" type="file" id="exp-img-input-1" name="exp-img-input-1"
+                accept="image/jpeg, image/png, image/jpg"
+                onchange="previewIMG(this, '#exp .institution-1 .logo-institution')">
+            </div>
+
+          </div>
+
+          <div class="container-fluid ms-3">
+
+            <div class="d-flex">
+              <h4 class="flex-grow-1">Freelancer</h4>
+              <div class="btn-edit flex-shrink-0 p-0">
+                <a class=" btn-right p-1" onclick="editInstitution(
+                    '#exp .institution-1 .input-file',
+                    '#exp .institution-1 .input-title',
+                    '#exp .institution-1 .input-text',
+                    '#exp .institution-1 .input-date',
+                    '#exp .institution-1 .submit-button',
+                    '#exp .institution-1 h4',
+                    '#exp .institution-1 .card-text',
+                    '#exp .institution-1 .date-text'
+                    )">
+                  <i class="fa-solid fa-pen"></i></a>
+                <a class="btn-right p-1" onclick="deleteElement('#exp .institution-1')">
+                  <i class="fa-solid fa-x"></i></a>
+              </div>
+            </div>
+
+            <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+            <p class="card-text mt-3 mb-1">Freelancer en diseño gráfico y diseño Web.</p>
+
+            <textarea class="input-text new-content-box container-fluid" type="text"
+              placeholder="Ingrese el nuevo texto."></textarea>
+            <p class="date-text card-text mt-3 mb-1">2011-presente</p>
+            <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+            <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+              onclick="hideBoxes('#exp .institution-1 .new-content-box')">
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" id="edu">
+      <div class="card-body">
+        <div class="card-title">
+
+          <div class="section-title d-flex">
+            <div class="d-block">
+
+              <div class="d-flex">
+                <h2>Educación</h2>
+                <div class="btn-edit ms-3">
+                  <a class="btn-right p-1" onclick="editSectionTitle(
+                    '#edu .section-title .input-title',
+                    '#edu .section-title h2',
+                    '#edu .section-title .submit-button'
+                    )">
+                    <i class="fa-solid fa-pen"></i></a>
+                  <a class="btn-right p-1" onclick="deleteElement('#edu')">
+                    <i class="fa-solid fa-x"></i></a>
+                </div>
+              </div>
+
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo título.">
+              <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+                onclick="hideBoxes('#edu .section-title .new-content-box')">
+
+            </div>
+          </div>
+
+          <div class="btn-edit">
+            <a class="btn-right" onclick="addInstitution('#edu .card-title')"><i class="fa-solid fa-plus"></i></a>
+          </div>
+        </div>
+
+        <div class="institution-4 d-lg-flex my-3">
+
+          <div class="flex-shrink-0 text-center ms-md-3">
+            <img class="logo-institution mb-3" src="./img/arg-programa-logo.png" alt="Logo">
+
+            <div class="input-file new-content-box" id="edu-input-file-3">
+              <label class="btn btn-secondary mb-4" for="edu-img-input-3">Seleccione una imagen:</label>
+              <input class="hidden-input" type="file" id="edu-img-input-3" name="edu-img-input-3"
+                accept="image/jpeg, image/png, image/jpg"
+                onchange="previewIMG(this, '#edu .institution-4 .logo-institution')">
+            </div>
+
+          </div>
+
+          <div class="container-fluid ms-3">
+
+            <div class="d-flex">
+              <h4 class="flex-grow-1">Full Stack Developer Jr</h4>
+              <div class="btn-edit flex-shrink-0 p-0">
+                <a class=" btn-right p-1" onclick="editInstitution(
+                    '#edu .institution-4 .input-file',
+                    '#edu .institution-4 .input-title',
+                    '#edu .institution-4 .input-text',
+                    '#edu .institution-4 .input-date',
+                    '#edu .institution-4 .submit-button',
+                    '#edu .institution-4 h4',
+                    '#edu .institution-4 .card-text',
+                    '#edu .institution-4 .date-text'
+                    )">
+                  <i class="fa-solid fa-pen"></i></a>
+                <a class="btn-right p-1" onclick="deleteElement('#edu .institution-4')">
+                  <i class="fa-solid fa-x"></i></a>
+              </div>
+            </div>
+
+            <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+            <p class="card-text mt-3 mb-1">Argentina Programa #YoProgramo</p>
+
+            <textarea class="input-text new-content-box container-fluid" type="text"
+              placeholder="Ingrese el nuevo texto."></textarea>
+            <p class="date-text card-text mt-3 mb-1">junio 2022 - Enero 2023</p>
+            <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+            <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+              onclick="hideBoxes('#edu .institution-4 .new-content-box')">
+
+          </div>
+
+        </div>
+
+        <div class="institution-3 d-lg-flex my-3">
+
+          <div class="flex-shrink-0 text-center ms-md-3">
+            <img class="logo-institution mb-3" src="./img/arg-programa-logo.png" alt="Logo">
+
+            <div class="input-file new-content-box" id="edu-input-file-3">
+              <label class="btn btn-secondary mb-4" for="edu-img-input-3">Seleccione una imagen:</label>
+              <input class="hidden-input" type="file" id="edu-img-input-3" name="edu-img-input-3"
+                accept="image/jpeg, image/png, image/jpg"
+                onchange="previewIMG(this, '#edu .institution-3 .logo-institution')">
+            </div>
+
+          </div>
+
+          <div class="container-fluid ms-3">
+
+            <div class="d-flex">
+              <h4 class="flex-grow-1">#SéProgramar</h4>
+              <div class="btn-edit flex-shrink-0 p-0">
+                <a class=" btn-right p-1" onclick="editInstitution(
+                    '#edu .institution-3 .input-file',
+                    '#edu .institution-3 .input-title',
+                    '#edu .institution-3 .input-text',
+                    '#edu .institution-3 .input-date',
+                    '#edu .institution-3 .submit-button',
+                    '#edu .institution-3 h4',
+                    '#edu .institution-3 .card-text',
+                    '#edu .institution-3 .date-text'
+                    )">
+                  <i class="fa-solid fa-pen"></i></a>
+                <a class="btn-right p-1" onclick="deleteElement('#edu .institution-3')">
+                  <i class="fa-solid fa-x"></i></a>
+              </div>
+            </div>
+
+            <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+            <p class="card-text mt-3 mb-1">Argentina Programa</p>
+
+            <textarea class="input-text new-content-box container-fluid" type="text"
+              placeholder="Ingrese el nuevo texto."></textarea>
+            <p class="date-text card-text mt-3 mb-1">Febrero 2022 - Abril 2022</p>
+            <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+            <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+              onclick="hideBoxes('#edu .institution-3 .new-content-box')">
+
+          </div>
+
+        </div>
+
+        <div class="institution-2 d-lg-flex my-3">
+
+          <div class="flex-shrink-0 text-center ms-md-3">
+            <img class="logo-institution mb-3" src="./img/logo_unlp.png" alt="Logo">
+
+            <div class="input-file new-content-box" id="edu-input-file-2">
+              <label class="btn btn-secondary mb-4" for="edu-img-input-2">Seleccione una imagen:</label>
+              <input class="hidden-input" type="file" id="edu-img-input-2" name="edu-img-input-2"
+                accept="image/jpeg, image/png, image/jpg"
+                onchange="previewIMG(this, '#edu .institution-2 .logo-institution')">
+            </div>
+
+          </div>
+
+          <div class="container-fluid ms-3">
+
+            <div class="d-flex">
+              <h4 class="flex-grow-1">Licenciatura en Psicología - incompleto</h4>
+              <div class="btn-edit flex-shrink-0 p-0">
+                <a class=" btn-right p-1" onclick="editInstitution(
+                    '#edu .institution-2 .input-file',
+                    '#edu .institution-2 .input-title',
+                    '#edu .institution-2 .input-text',
+                    '#edu .institution-2 .input-date',
+                    '#edu .institution-2 .submit-button',
+                    '#edu .institution-2 h4',
+                    '#edu .institution-2 .card-text',
+                    '#edu .institution-2 .date-text'
+                    )">
+                  <i class="fa-solid fa-pen"></i></a>
+                <a class="btn-right p-1" onclick="deleteElement('#edu .institution-2')">
+                  <i class="fa-solid fa-x"></i></a>
+              </div>
+            </div>
+
+            <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+            <p class="card-text mt-3 mb-1">Facultad de Psicología de la Universidad Nacional de La Plata
+              (UNLP) (Argentina).</p>
+
+            <textarea class="input-text new-content-box container-fluid" type="text"
+              placeholder="Ingrese el nuevo texto."></textarea>
+            <p class="date-text card-text mt-3 mb-1">2006-2018</p>
+            <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+            <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+              onclick="hideBoxes('#edu .institution-2 .new-content-box')">
+
+          </div>
+
+        </div>
+
+        <div class="institution-1 d-lg-flex my-3">
+
+          <div class="flex-shrink-0 text-center ms-md-3">
+            <img class="logo-institution mb-3" src="./img/escudo_ees1.jpg" alt="Logo">
+
+            <div class="input-file new-content-box" id="edu-input-file-1">
+              <label class="btn btn-secondary mb-4" for="edu-img-input-1">Seleccione una imagen:</label>
+              <input class="hidden-input" type="file" id="edu-img-input-1" name="edu-img-input-1"
+                accept="image/jpeg, image/png, image/jpg"
+                onchange="previewIMG(this, '#edu .institution-1 .logo-institution')">
+            </div>
+
+          </div>
+
+          <div class="container-fluid ms-3">
+
+            <div class="d-flex">
+              <h4 class="flex-grow-1">Perito mercantil</h4>
+              <div class="btn-edit flex-shrink-0 p-0">
+                <a class=" btn-right p-1" onclick="editInstitution(
+                    '#edu .institution-1 .input-file',
+                    '#edu .institution-1 .input-title',
+                    '#edu .institution-1 .input-text',
+                    '#edu .institution-1 .input-date',
+                    '#edu .institution-1 .submit-button',
+                    '#edu .institution-1 h4',
+                    '#edu .institution-1 .card-text',
+                    '#edu .institution-1 .date-text'
+                    )">
+                  <i class="fa-solid fa-pen"></i></a>
+                <a class="btn-right p-1" onclick="deleteElement('#edu .institution-1')">
+                  <i class="fa-solid fa-x"></i></a>
+              </div>
+            </div>
+
+            <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+            <p class="card-text mt-3 mb-1">Escuela Secundaria N°1 Manuel Belgrano. La Plata, Buenos Aires (Argentina).
+            </p>
+
+            <textarea class="input-text new-content-box container-fluid" type="text"
+              placeholder="Ingrese el nuevo texto."></textarea>
+            <p class="date-text card-text mt-3 mb-1">2001-2004</p>
+            <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+            <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+              onclick="hideBoxes('#edu .institution-1 .new-content-box')">
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="card" id="skills">
+      <div class="card-body">
+        <div class="card-title">
+
+          <div class="section-title d-flex">
+
+            <div class="d-block">
+
+              <div class="d-flex">
+                <h2>Hard & Soft Skills</h2>
+                <div class="btn-edit ms-3">
+                  <a class="btn-right p-1" onclick="editSectionTitle(
+                    '#skills .section-title .input-title',
+                    '#skills .section-title h2',
+                    '#skills .section-title .submit-button'
+                    )">
+                    <i class="fa-solid fa-pen"></i></a>
+                  <a class="btn-right p-1" onclick="deleteElement('#skills')">
+                    <i class="fa-solid fa-x"></i></a>
+                </div>
+              </div>
+
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo título.">
+              <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+                onclick="hideBoxes('#skills .section-title .new-content-box')">
+
+            </div>
+          </div>
+
+          <div class="btn-edit">
+            <a class="btn-right" onclick="addSkill('#skills .card-title')">
+              <i class="fa-solid fa-plus"></i></a>
+          </div>
+
+        </div>
+
+        <div class="skill-6 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">Stack MEAN</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-6 .input-title',
+                  '#skills .skill-6 .input-progress',
+                  '#skills .skill-6 h5',
+                  '#skills .skill-6 .progress-bar',
+                  '#skills .skill-6 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-6')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 85%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-6 .new-content-box')">
+
+        </div>
+
+        <div class="skill-5 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">PSD/Vector - Gimp/Inkscape</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-5 .input-title',
+                  '#skills .skill-5 .input-progress',
+                  '#skills .skill-5 h5',
+                  '#skills .skill-5 .progress-bar',
+                  '#skills .skill-5 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-5')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 80%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-5 .new-content-box')">
+
+        </div>
+
+        <div class="skill-4 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">Wordpress</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-4 .input-title',
+                  '#skills .skill-4 .input-progress',
+                  '#skills .skill-4 h5',
+                  '#skills .skill-4 .progress-bar',
+                  '#skills .skill-4 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-4')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 70%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-4 .new-content-box')">
+
+        </div>
+
+        <div class="skill-3 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">Inglés</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-3 .input-title',
+                  '#skills .skill-3 .input-progress',
+                  '#skills .skill-3 h5',
+                  '#skills .skill-3 .progress-bar',
+                  '#skills .skill-3 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-3')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 70%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-3 .new-content-box')">
+
+        </div>
+
+        <div class="skill-2 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">Flexibilidad</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-2 .input-title',
+                  '#skills .skill-2 .input-progress',
+                  '#skills .skill-2 h5',
+                  '#skills .skill-2 .progress-bar',
+                  '#skills .skill-2 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-2')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 80%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-2 .new-content-box')">
+
+        </div>
+
+        <div class="skill-1 text-center m-0">
+
+          <div class="row pt-5">
+
+            <!-- col vacia para establecer la estructura. -->
+            <div class="col"></div>
+
+            <div class="col">
+              <h5 class="card-text">Positividad</h5>
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese la nueva habilidad.">
+            </div>
+
+
+            <div class="btn-edit col">
+              <a class="btn-right p-1" onclick="editSkill(
+                  '#skills .skill-1 .input-title',
+                  '#skills .skill-1 .input-progress',
+                  '#skills .skill-1 h5',
+                  '#skills .skill-1 .progress-bar',
+                  '#skills .skill-1 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#skills .skill-1')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 90%"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <input class="input-progress new-content-box" type="number" placeholder="Ingrese el nuevo procentaje."
+              min="0" max="100">
+          </div>
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#skills .skill-1 .new-content-box')">
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class=" card" id="projects">
+      <div class="card-body">
+        <div class="card-title">
+
+          <div class="section-title d-flex">
+            <div class="d-block">
+
+              <div class="d-flex">
+                <h2>Proyectos</h2>
+                <div class="btn-edit ms-3">
+                  <a class="btn-right p-1" onclick="editSectionTitle(
+                    '#projects .section-title .input-title',
+                    '#projects .section-title h2',
+                    '#projects .section-title .submit-button'
+                    )">
+                    <i class="fa-solid fa-pen"></i></a>
+                  <a class="btn-right p-1" onclick="deleteElement('#projects')">
+                    <i class="fa-solid fa-x"></i></a>
+                </div>
+              </div>
+
+              <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo título.">
+              <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+                onclick="hideBoxes('#projects .section-title .new-content-box')">
+
+            </div>
+          </div>
+
+          <div class="btn-edit">
+            <a class="btn-right" onclick="addProject('#projects .card-title')">
+              <i class="fa-solid fa-plus"></i></a>
+          </div>
+        </div>
+
+        <div class="project-1 my-3 ms-md-5">
+
+          <div class="d-flex pt-4">
+            <a class="url-project-1 text-decoration-none flex-grow-1" href="#" target="_blank">
+              <h3>Portfolio Web</h3>
+            </a>
+
+            <div class="btn-edit flex-shrink-0 text-end p-0">
+              <a class="btn-right p-1" onclick="editProject(
+                  '#projects .project-1 .input-title',
+                  '#projects .project-1 .project-textarea',
+                  '#projects .project-1 .input-file',
+                  '#projects .project-1 h3',
+                  '#projects .project-1 .card-text',
+                  '#projects .project-1 .date-text',
+                  '#projects .project-1 .input-date',
+                  '#projects .project-1 .input-url',
+                  '#projects .project-1 .submit-button'
+                  )">
+                <i class="fa-solid fa-pen"></i></a>
+              <a class="btn-right p-1" onclick="deleteElement('#projects .project-1')">
+                <i class="fa-solid fa-x"></i></a>
+            </div>
+
+          </div>
+
+          <input class="input-title new-content-box" type="text" placeholder="Ingrese el nuevo nombre.">
+          <p class="card-text my-2">Desarrollé un portfolio web basado en el stack MEAN, es decir, utilizando MongoDB,
+            Express, Angular y Node.js. Luego cada una de las capas fueron subidas a: Firebase (para Front End
+            skill-1), HEROKU (para Back End Spring Boot) y Heroku Add On (para la Base de Datos MYSQL).</p>
+
+          <textarea class="project-textarea new-content-box container-fluid"
+            placeholder="Ingrese el nuevo texto."></textarea>
+
+          <p class="date-text card-tex mt-3 mb-1">2022</p>
+          <input class="input-date new-content-box" type="text" placeholder="Ingrese la nueva fecha.">
+
+          <a class="link-for-project-1-img" href="#" target="_blank">
+            <img class="img-project mx-auto d-block mt-3 ms-md-5 rounded" src="./img/web-profile-project.jpg"
+              alt="Imagen del Portfolio">
+          </a>
+
+          <div class="input-file new-content-box" id="poject-input-file-1">
+            <label class="btn btn-secondary d-flex mx-auto ms-md-0 my-2" for="projects-img-input-1">
+              Seleccione una imagen:</label>
+            <input class="hidden-input" type="file" id="projects-img-input-1" name="projects-img-input-1"
+              accept="image/jpeg, image/png, image/jpg"
+              onchange="previewIMG(this, '#projects .project-1 .img-project')">
+          </div>
+
+          <input class="input-url new-content-box my-2" type="text" id="projects-img-url-input-1"
+            name="projects-img-url-input-1" placeholder="Ingrese la nueva url." oninput="editProjectUrl(
+                 '#projects .project-1 .url-project-1',
+                 '#projects .project-1 .link-for-project-1-img',
+                 '#projects .project-1 .input-url'
+                 )">
+
+          <input class="submit-button new-content-box btn btn-primary my-2" type="submit"
+            onclick="hideBoxes('#projects .project-1 .new-content-box')">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="javascript.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+.ap-logo {
+  width: 100px;
+}
+
+body {
+  font-family: 'Comfortaa', cursive;
+  background-color: #fff;
+  color: #404044;
+}
+
+#modal-nodisplay {
+  display: none;
+}
+
+.container-fluid {
+  padding: 10px;
+}
+
+.card {
+  margin: 20px 0 20px;
+  border-radius: 30px;
+}
+
+.card-img-top {
+  border-radius: 30px 30px 0 0;
+  max-height: 300px;
+  object-fit: cover;
+
+}
+
+.card-profile {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-pic {
+  margin-top: -50px;
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 50%;
+  border: solid 5px #fff;
+}
+
+.card-profile .btn-edit {
+  padding-top: 70px;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit a {
+  color: #fff;
+}
+
+.btn-edit i:before {
+  background: #00A693;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+}
+
+.btn-edit .fa-x:before {
+  background: #eb2222;
+  padding: 12px 14px;
+}
+
+
+@media (max-width: 600px) {
+  .btn-edit {
+    line-height: 3;
+  }
+}
+
+.btn-right {
+  cursor: pointer;
+}
+
+.logo-institution {
+  max-height: 80px;
+  max-width: 80px;
+  background-position: center;
+}
+
+.new-content-box,
+.hidden-input {
+  display: none;
+  min-width: 260px;
+}
+
+.submit-button {
+  display: none;
+  min-width: max-content;
+}
+
+.progress {
+  margin: 10px 20%;
+}
+
+.img-project {
+  max-width: 200px;
+  max-height: 200px;
+}
