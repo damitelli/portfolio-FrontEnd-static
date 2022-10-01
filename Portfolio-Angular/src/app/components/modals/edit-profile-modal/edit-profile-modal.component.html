@@ -1,0 +1,125 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Perfil</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editProfileForm" (ngSubmit)="updateProfileData(editProfileForm.value); activeModal.close()">
+
+            <div class="mb-3">
+                <label for="edit-profile-name" class="form-label">Nombre</label>
+                <input type="text" class="form-control form-control-sm" id="edit-profile-name"
+                    placeholder="Ingrese su nombre." formControlName="name" required minlength="1" maxlength="50"
+                    [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                    <div *ngIf="name.errors?.['required']">
+                        El nombre es requerido (mínimo 1 caracter y máximo 50 caracteres).
+                    </div>
+                    <div *ngIf="name.errors?.['minlength']">
+                        El nombre debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="name.errors?.['maxlength']">
+                        El nombre debe tener como máximo 50 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="edit-profile-profession" class="form-label">Profesión</label>
+                <input type="text" class="form-control form-control-sm" id="edit-profile-profession"
+                    placeholder="Ingrese su profesión." formControlName="profession" required minlength="1"
+                    maxlength="50" [class.is-invalid]="profession.invalid && (profession.dirty || profession.touched)">
+                <div *ngIf="profession.invalid && (profession.dirty || profession.touched)" class="invalid-feedback">
+                    <div *ngIf="profession.errors?.['required']">
+                        La profesión es requerida (mínimo 1 caracter y máximo 50 caracteres).
+                    </div>
+                    <div *ngIf="profession.errors?.['minlength']">
+                        La profesión debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="profession.errors?.['maxlength']">
+                        La profesión debe tener como máximo 50 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="edit-profile-location" class="form-label">Localidad</label>
+                <input type="text" class="form-control form-control-sm" id="edit-profile-location"
+                    placeholder="Ingrese su localidad." formControlName="location" required minlength="1" maxlength="50"
+                    [class.is-invalid]="location.invalid && (location.dirty || location.touched)">
+                <div *ngIf="location.invalid && (location.dirty || location.touched)" class="invalid-feedback">
+                    <div *ngIf="location.errors?.['required']">
+                        La localidad es requerida (mínimo 1 caracter y máximo 50 caracteres).
+                    </div>
+                    <div *ngIf="location.errors?.['minlength']">
+                        La localidad debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="location.errors?.['maxlength']">
+                        La localidad debe tener como máximo 50 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="edit-profile-about" class="form-label">Acerca de</label>
+                <textarea type="text" class="form-control form-control-sm" id="edit-profile-about"
+                    placeholder="Ingrese información resumida sobre usted." formControlName="about" required
+                    minlength="1" maxlength="1000"
+                    [class.is-invalid]="about.invalid && (about.dirty || about.touched)"></textarea>
+                <div *ngIf="about.invalid && (about.dirty || about.touched)" class="invalid-feedback">
+                    <div *ngIf="about.errors?.['required']">
+                        La información resumida sobre usted es requerida (mínimo 1 caracter y máximo 1000 caracteres).
+                    </div>
+                    <div *ngIf="about.errors?.['minlength']">
+                        La información resumida sobre usted debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="about.errors?.['maxlength']">
+                        La información resumida sobre usted debe tener como máximo 1000 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="edit-profile-pic" class="form-label">Foto de perfil</label>
+                <textarea class="form-control form-control-sm" id="edit-profile-pic"
+                    placeholder="Ingrese el enlace a su foto de perfil." formControlName="pic" required minlength="1"
+                    maxlength="1000" [class.is-invalid]="pic.invalid && (pic.dirty || pic.touched)"></textarea>
+                <div *ngIf="pic.invalid && (pic.dirty || pic.touched)" class="invalid-feedback">
+                    <div *ngIf="pic.errors?.['required']">
+                        El enlace a su foto de perfil requerido (mínimo 1 caracter y máximo 1000 caracteres).
+                    </div>
+                    <div *ngIf="pic.errors?.['minlength']">
+                        El enlace a su foto de perfil debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="pic.errors?.['maxlength']">
+                        El enlace a su foto de perfil debe tener como máximo 1000 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="edit-profile-cover" class="form-label">Foto de portada</label>
+                <input type="text" class="form-control form-control-sm" id="edit-profile-cover"
+                    placeholder="Ingrese el enlace a su foto de portada." formControlName="cover" required minlength="1"
+                    maxlength="1000" [class.is-invalid]="cover.invalid && (cover.dirty || cover.touched)">
+                <div *ngIf="cover.invalid && (cover.dirty || cover.touched)" class="invalid-feedback">
+                    <div *ngIf="cover.errors?.['required']">
+                        El enlace a su foto de portada es requerido (mínimo 1 caracter y máximo 1000 caracteres).
+                    </div>
+                    <div *ngIf="cover.errors?.['minlength']">
+                        El enlace a su foto de portada debe tener almenos 1 caracter.
+                    </div>
+                    <div *ngIf="cover.errors?.['maxlength']">
+                        El enlace a su foto de portada debe tener como máximo 1000 caracteres.
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Cerrar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!editProfileForm.valid">Aplicar
+                    cambios</button>
+            </div>
+        </form>
+    </div>
+</div>

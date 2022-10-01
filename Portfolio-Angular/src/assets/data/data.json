@@ -1,0 +1,89 @@
+{
+  "profile": [
+    {
+      "id": 1,
+      "cover": "./assets/images/cover.jpg",
+      "pic": "./assets/images/profile.jpg",
+      "name": "Damián Zappitelli",
+      "profession": "Full Stack Developer Jr",
+      "location": "La Plata, Buenos Aires (Argentina)",
+      "about": "Desde que puedo recordar me ha interesado el arte, las computadoras y las historias. Como developer puedo combinar todos esos intereses. Muy entusiasmado de poder trabajar en la industria IT."
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "title": "Freelancer",
+      "description": "Freelancer en diseño gráfico y diseño Web. ",
+      "date": "2011-presente",
+      "img": "./assets/images/d-logo.png"
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "title": "Full Stack Developer Jr",
+      "description": "Argentina Programa #YoProgramo",
+      "date": "junio 2022 - Enero 2023",
+      "img": "./assets/images/arg-programa-logo.png"
+    },
+    {
+      "id": 2,
+      "title": "#SéProgramar",
+      "description": "Argentina Programa",
+      "date": "Febrero 2022 - Abril 2022",
+      "img": "./assets/images/arg-programa-logo.png"
+    },
+    {
+      "id": 3,
+      "title": "Licenciatura en Psicología - incompleto",
+      "description": "Facultad de Psicología de la Universidad Nacional de La Plata (UNLP) (Argentina).",
+      "date": "2006-2018",
+      "img": "./assets/images/logo_unlp.png"
+    },
+    {
+      "id": 4,
+      "title": "Perito mercantil",
+      "description": "Escuela Secundaria N° 1 Manuel Belgrano. La Plata, Buenos Aires (Argentina).",
+      "date": "2001-2004",
+      "img": "./assets/images/escudo_ees1.jpg"
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "name": "MEAN",
+      "percentage": "85"
+    },
+    {
+      "id": 2,
+      "name": "PSD/Vector - Gimp/Inkscape",
+      "percentage": 80
+    },
+    {
+      "id": 3,
+      "name": "Wordpress",
+      "percentage": 70
+    },
+    {
+      "id": 5,
+      "name": "Flexibilidad",
+      "percentage": 80
+    },
+    {
+      "id": 6,
+      "name": "Positividad",
+      "percentage": 90
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Portfolio Web",
+      "description": "Desarrollé un portfolio web basado en el stack MEAN, es decir, utilizando MongoDB, Express, Angular y Node.js. Luego cada una de las capas fueron subidas a: Firebase (para Front End skill-1), HEROKU (para Back End Spring Boot) y Heroku Add On (para la Base de Datos MYSQL).",
+      "date": "2022",
+      "img": "./assets/images/web-profile-project.jpg",
+      "projectUrl": "https://google.com"
+    }
+  ]
+}
